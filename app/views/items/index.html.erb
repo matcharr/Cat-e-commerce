@@ -4,9 +4,9 @@
 <br>
 <h2 class="display-4-selection text-center mb-5"> Découvrez notre sélection de chatons (<%= @items.size %>)</h2>
 
-<% @items.each |item| do %>
-  <%= item.image_url %>
-  <%= links_to <%= item.title %>, item_path(item.id) %>
-<% end %>
+<% @items.each do |item| %>
+ <img src="<%= item.image_url %>">
+  <%= link_to item.title,  item_path(item.id) %>
+<%end %>
 
 </div>
