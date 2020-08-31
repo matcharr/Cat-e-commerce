@@ -4,8 +4,9 @@
 <br>
 <h2 class="display-4-selection text-center mb-5"> Découvrez notre sélection de chatons (<%= @items.size %>)</h2>
 
-
-
-<%= render partial: "items/list", locals: {items: @items.sort_by(&:created_at).reverse} %>
+<% @items.each |item| do %>
+  <%= item.image_url %>
+  <%= links_to <%= item.title %>, item_path(item.id) %>
+<% end %>
 
 </div>
