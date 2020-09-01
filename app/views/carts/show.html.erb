@@ -1,0 +1,13 @@
+<h3>Mon panier</h3>
+
+<p> Prix total : <%= @total_price %> €</p>
+
+<% @cart.each do |item| %>
+
+	<p>Titre : <%= item.title %></p>
+	<img src="<%= item.image_url %>">
+	<p>Prix : <%= item.price %> €</p>
+	<p><%= item.description %></p>
+	<%= link_to "Supprimer du panier", cart_path(item.id), method: "delete", class: "btn btn-outline-danger"%>
+
+<% end %>

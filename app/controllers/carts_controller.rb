@@ -11,4 +11,16 @@ class CartsController < ApplicationController
 			# faudra mettre une alerte ici
 		end
 	end
+
+	def show
+		@cart = current_user.items
+		@total_price = 0
+		@cart.each { |item| @total_price += item.price }
+	end
+
+	def destroy
+		item = Item.find(params[:id])
+		item.delete
+		redirect_to cart_path(current_user.id)
+	end
 end

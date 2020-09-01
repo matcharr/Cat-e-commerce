@@ -1,9 +1,21 @@
+<head>
+    <title>WebCat</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+ </head>
+
 <div class="container">
 
 <h1>Bienvenue ! </h1>
 <br>
 <br>
 <h2 class="display-4-selection text-center mb-5"> Découvrez notre sélection de chatons (<%= @items.size %>)</h2>
+
+<%= link_to "Voir mon panier", cart_path(current_user.id) %>
 
 <% @items.each do |item| %>
  <img src="<%= item.image_url %>">
