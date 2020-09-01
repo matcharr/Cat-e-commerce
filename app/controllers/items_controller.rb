@@ -13,4 +13,5 @@ private
 	def finder_item
 		Item.find(params[:id])
 	end
+
 end
