@@ -20,7 +20,8 @@ class CartsController < ApplicationController
 
 	def destroy
 		item = Item.find(params[:id])
-		item.delete
+		cart = Cart.find_by(item: item)
+		cart.delete
 		redirect_to cart_path(current_user.id)
 	end
 end
