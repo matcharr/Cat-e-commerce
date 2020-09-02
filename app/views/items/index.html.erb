@@ -2,25 +2,55 @@
     <title>WebCat</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
- </head>
+    <style type="text/css">
+      .parent {
+                display: flex;
+                flex-wrap: wrap;
+              }
+
+      .child {
+                flex: 1 0 auto;
+              }
+    </style>
+</head>
 
 <div class="container">
+  <br><br>
 
-<h1>Bienvenue ! </h1>
-<br>
-<br>
-<h2 class="display-4-selection text-center mb-5"> Découvrez notre sélection de chatons (<%= @items.size %>)</h2>
-
-<%= link_to "Voir mon panier", cart_path(current_user.id) %>
-
-<% @items.each do |item| %>
- <img src="<%= item.image_url %>">
-  <%= link_to item.title,  item_path(item.id) %>
-  <%= button_to "Ajouter au panier", carts_path(:item_id => item.id), method: "post", class: 'btn btn-outline-primary' %>
-<%end %>
-
+  <div class="display-4-selection text-center mb-5">
+    <h2> Découvrez notre sélection de chatons (<%= @items.size %>)</h2>
+  </div>
+</div>
+  <!-- <%= link_to "Voir mon panier", cart_path(current_user.id) %>-->
+<div class="container">
+<div class="parent">  
+    <% @items.each do |item| %>
+    <div class="child">
+      <div class="card mb-3" style="max-width: 20rem;">
+        
+        <div class="card-body">
+          <h5 class="card-title"><%= item.title%></h5>
+        </div>
+        
+        <img style="height: 200px; width: 100%; display: block;" src="<%= item.image_url %>">
+        
+        <div class="card-body">
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        
+        <div class="card-body">
+          <a href="#" class="card-link"><%= link_to item.title,  item_path(item.id) %></a>
+          <%= button_to "Ajouter au panier", carts_path(:item_id => item.id), method: "post", class: 'btn btn-outline-primary' %>
+        </div>
+        
+        <div class="card-footer text-muted">
+          2 days ago
+        </div>
+      </div>
+    </div>
+    <%end %>
+  </div>
 </div>
