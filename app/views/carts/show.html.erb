@@ -11,3 +11,9 @@
 	<%= link_to "Supprimer du panier", cart_path(item.id), method: "delete", class: "btn btn-outline-danger"%>
 
 <% end %>
+
+<% if cart_is_empty? %>
+	<%= link_to "Passer commande", new_order_path, class: "btn btn-info" %>
+<% else %>
+	<%= link_to "Passer commande", new_order_path, class: "btn btn-info disabled" %>
+<% end %>

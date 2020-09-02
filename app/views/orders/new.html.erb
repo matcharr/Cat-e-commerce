@@ -1,0 +1,48 @@
+
+<div class="container" style="padding-top: 7em">
+
+<h3 class="text-center">Ma commande</h3>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+      <th scope="col">Prix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart.each do |item| %>
+    <tr>
+      <th scope="row"> <%= item.title %> </th>
+      <td><%= item.description %></td>
+      <td><img src="<%= item.image_url %>" style="height: 50px; width: 70px"></td>
+      <td><%= item.price %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_tag orders_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Prix à payer : <%= @price %></span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Achat sur WebCat"
+          data-amount="<%= @price * 100 %>"
+          data-currency="eur"
+          data-locale="auto"></script>
+<% end %>
+
+</div>
+

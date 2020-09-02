@@ -14,8 +14,8 @@ class CartsController < ApplicationController
 
 	def show
 		@cart = current_user.items
-		@total_price = 0
-		@cart.each { |item| @total_price += item.price }
+		@total_price = total_price
+		
 	end
 
 	def destroy

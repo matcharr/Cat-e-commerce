@@ -9,6 +9,9 @@
 # i = Item.create(title: "lollol", description: "llllllllllllllll", price: 2, image_url: "lol.png")
 
 Item.destroy_all
+Order.destroy_all
+Cart.destroy_all
+ItemOrderTable.destroy_all
 
 20.times do 
 	Item.create(title: "Chat mignon", description: "Ce chat est trop mignoooooon", price: 10, image_url: "https://www.wanimo.com/veterinaire/wp-content/uploads/2019/12/prenoms-chaton-r-2020@2x.jpg");
