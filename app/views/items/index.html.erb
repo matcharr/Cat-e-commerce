@@ -25,12 +25,16 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link " href="#">User <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link " href="<%= edit_user_registration_path %>">User <span class="sr-only">(current)</span></a>
       <% if current_user %>
       <a class="nav-item nav-link" <%=link_to "Panier",cart_path(current_user.id)%></a>
      <% end %>
-      <a class="nav-item nav-link" href="#">About</a>
     </div>
+    <% if !current_user %>
+      <button type="button" class="btn btn-outline-primary"><%= link_to "Se connecter", new_user_session_path %></button>
+    <% else %>
+      <button type="button" class="btn btn-outline-warning"><%= link_to "Se déconnecter", destroy_user_session_path, method: 'delete' %></button>
+    <% end %>
   </div>
 </nav>
 <div class="container">
