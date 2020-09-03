@@ -23,4 +23,13 @@ default from: 'no-reply@CatWeb.fr'
   	)
   end
 
+  def order_admin(user)
+    @user = user
+
+    mail(
+      to: "catweb@yopmail.com",
+      delivery_method_options: { api_key: ENV['MAIL_API_KEY'], secret_key: ENV['MAIL_API_KEY_SECRET'] }
+    )
+  end
+
 end

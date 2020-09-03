@@ -1,8 +1,12 @@
 class Order < ApplicationRecord
-	after_create :order_send
+	after_create :admin_send, :order_send
 
 	def order_send
     UserMailer.order_email(self.user).deliver_now
+	end
+
+	def admin_send
+    UserMailer.order_admin(self.user).deliver_now
 	end
 
 	belongs_to :user
