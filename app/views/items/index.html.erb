@@ -24,7 +24,9 @@
     <h2> Découvrez notre sélection de chatons (<%= @items.size %>)</h2>
   </div>
 </div>
-  <!-- <%= link_to "Voir mon panier", cart_path(current_user.id) %>-->
+  <% if current_user %>
+    <%= link_to "Voir mon panier", cart_path(current_user.id) %>
+  <% end %>
 <div class="container">
 <div class="parent">  
     <% @items.each do |item| %>
@@ -38,16 +40,14 @@
         <img style="height: 200px; width: 100%; display: block;" src="<%= item.image_url %>">
         
         <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text"><%= item.description %></p>
         </div>
         
         <div class="card-body">
-          <a href="#" class="card-link"><%= link_to item.title,  item_path(item.id) %></a>
-          <%= button_to "Ajouter au panier", carts_path(:item_id => item.id), method: "post", class: 'btn btn-outline-primary' %>
-        </div>
-        
-        <div class="card-footer text-muted">
-          2 days ago
+          <%= link_to item.title, item_path(item.id), class: 'card-link' %>
+          <% if current_user %>
+            <%= button_to "Ajouter au panier", carts_path(:item_id => item.id), method: "post", class: 'btn btn-outline-primary' %>
+          <% end %>
         </div>
       </div>
     </div>

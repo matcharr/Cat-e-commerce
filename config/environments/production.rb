@@ -94,3 +94,6 @@ Rails.application.configure do
 end
 
 config.action_mailer.default_url_options = { :host => 'YOURAPPNAME.herokuapp.com' }
+
+  # config.action_mailer.delivery_method = :mailjet_api
+

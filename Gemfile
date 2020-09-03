@@ -67,3 +67,5 @@ gem 'table_print'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'stripe'
+gem "letter_opener", :group => :development
+gem 'mailjet'
