@@ -1,19 +1,55 @@
-<h3>Mon panier</h3>
+<head>
+	<style type="text/css">
+		.parent {
+				display: flex;
+				flex-wrap: wrap;
+			}
+		.child {
+                flex: 1 0 auto;
+			}
+		
+    </style>
+</head>
 
-<p> Prix total : <%= @total_price %> €</p>
+<div class="container">
+	<br><br>
+	<div class="display-4-selection text-center mb-5">
+    	<h3>Mon panier</h3>
+		<p>Prix total : <%= @total_price %> €</p>
+		<% if cart_is_empty? %>
+			<%= link_to "Passer commande", new_order_path, class: "btn btn-info" %>
+		<% else %>
+			<%= link_to "Passer commande", new_order_path, class: "btn btn-info disabled" %>
+		<% end %>
+	</div>
 
-<% @cart.each do |item| %>
+	<div class="parent">
+		<% @cart.each do |item| %>
+		<div class="child">
+			<div class="card mb-3" style="max-width: 20rem;">          
+				<div class="card-body">
+					<h5 class="card-title text-center"><%= item.title%></h5>
+				</div>         
+				
+				<img style="height: 200px; width: 100%; display: block;" src="<%= item.image_url %>">     
+				<div class="card-body">
+					<p class="card-text"><%= item.description %></p>
+					<p class="card-text"><%= item.price%>$</p>
+				</div>
+				<div class="card-body">
+					<%= link_to item.title, item_path(item.id), class: 'card-link' %>
 
-	<p>Titre : <%= item.title %></p>
-	<img src="<%= item.image_url %>">
-	<p>Prix : <%= item.price %> €</p>
-	<p><%= item.description %></p>
-	<%= link_to "Supprimer du panier", cart_path(item.id), method: "delete", class: "btn btn-outline-danger"%>
+					<div>
+						<%= link_to "Supprimer du panier", cart_path(item.id), method: "delete", class: "btn btn-outline-danger"%>
+					</div>
+				</div>
+				<div class="card-footer text-muted">
+            		2 days ago
+          		</div>
+			</div>
 
-<% end %>
-
-<% if cart_is_empty? %>
-	<%= link_to "Passer commande", new_order_path, class: "btn btn-info" %>
-<% else %>
-	<%= link_to "Passer commande", new_order_path, class: "btn btn-info disabled" %>
-<% end %>
+			
+		</div>
+		<% end %>
+	</div>
+</div>

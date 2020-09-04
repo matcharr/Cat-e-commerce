@@ -27,16 +27,17 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link " href="<%= edit_user_registration_path %>">User <span class="sr-only">(current)</span></a>
       <% if current_user %>
-      <a class="nav-item nav-link" <%=link_to "Panier",cart_path(current_user.id)%></a>
+      <a class="nav-item nav-link" <%= link_to "Panier",cart_path(current_user.id)%></a>
      <% end %>
     </div>
     <% if !current_user %>
-      <button type="button" class="btn btn-outline-primary"><%= link_to "Se connecter", new_user_session_path %></button>
+      <button type="button" class="btn btn-outline-info"><%= link_to "Se connecter", new_user_session_path %></button>
     <% else %>
       <button type="button" class="btn btn-outline-warning"><%= link_to "Se déconnecter", destroy_user_session_path, method: 'delete' %></button>
     <% end %>
   </div>
 </nav>
+
 <div class="container">
   <br><br>
 
@@ -50,7 +51,7 @@
       <div class="child">
         <div class="card mb-3" style="max-width: 20rem;">          
           <div class="card-body">
-            <h5 class="card-title"><%= item.title%></h5>
+            <h5 class="card-title text-center"><%= item.title%></h5>
           </div>         
           <img style="height: 200px; width: 100%; display: block;" src="<%= item.image_url %>">     
           <div class="card-body">
@@ -62,6 +63,9 @@
             <% if current_user %>
               <%= button_to "Ajouter au panier", carts_path(:item_id => item.id), method: "post", class: 'btn btn-outline-primary' %>
             <% end %>
+          </div>
+          <div class="card-footer text-muted">
+            2 days ago
           </div>
         </div>
       </div>
